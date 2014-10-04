@@ -70,8 +70,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-var server = app.listen(3000, function(){
-	console.log("Listening on port %d,", server.address().port);
-});
+app.listen(process.env.OPENSHIFT_NODEJS_PORT || 8080,
+           process.env.OPENSHIFT_NODEJS_IP);
 
 module.exports = app;
