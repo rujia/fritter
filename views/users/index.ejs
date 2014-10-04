@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home</title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+	<body>
+    	<p>Hello <%=user%>, you're now in the user page!</p> 
+    	
+        <a href= "logout/">Log out</a><br><br>
+
+    	<form action="freet" method="post">
+    		New freet:<br>
+    		<textarea rows="4" cols="50" name="comments" placeholder="Enter text here ..."></textarea><br>
+    		<input type="submit" value="Submit">
+    	</form>
+    	<br>
+
+        <div>
+            <% for(var i = 0; i<individuals.length; i++){ %>
+                <div>
+                    <% if (individuals[i].user == user) { %>
+                        <form action="editdelete" method="post">
+                            <!-- <a href= <%="edit/" + individuals[i]._id.valueOf()%>>Edit</a>
+                            <a href= <%="delete/" + individuals[i]._id.valueOf()%>>Delete</a> -->
+                            <%= individuals[i].user%>: <%= individuals[i].post %>
+                            <input type="hidden" name="id" value=<%=individuals[i]._id.valueOf()%>>
+                            <input type="submit" value="edit/delete">
+                        </form>
+                    <%} else {%>
+                    <%= individuals[i].user%>: <%= individuals[i].post %>
+                    <%}%>
+                </div>
+            <%}%>
+        </div>
+  	</body>
+</html>

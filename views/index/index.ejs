@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fritter</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+
+	<body>
+		<p>Welcome to Fritter! Sign in below:</p>
+		<form action="login" method="post">
+			Username: <input type="text" name="username"><br>
+			Password: <input type="password" name="password"><br>
+			<input type="submit" value="Submit">
+		</form>
+
+		<p>Don't have an account? <a href="/newaccount">Sign up here!</a></p>
+
+		<p><%=message%></p>
+
+	</body>
+</html>
