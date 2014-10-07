@@ -4,6 +4,19 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
 	req.session.destroy();
+	/*
+	var db = req.db; 
+	var users = db.get('posts');
+	users.find({}, function(e, docs){
+		console.log(docs);
+		for (var i = 0; i<docs.length; i++){
+			users.remove({_id: docs[i]._id});
+		}
+	});
+	users.find({}, function(e, docs){
+		console.log(docs);
+	}) 
+*/
 	res.render('index/index', {'message': ''});
 });
 
@@ -17,12 +30,12 @@ router.get('/newaccount', function(req, res){
 router.post('/signup', function(req, res, next){
 	var db = req.db; 
 	var users = db.get('users');
-	users.find({"name": req.body.username}, function(err, docs){
+	users.find({"username": req.body.username}, function(err, docs){
 		if(err){
 			res.send("There was a problem");
 		} else{
 			if (docs.length === 0 && req.body.username.length>0 && req.body.password.length>=8) {
-				users.insert({"name": req.body.username, "password": req.body.password}, function(err, docs){
+				users.insert({"username": req.body.username, "password": req.body.password, "following": []}, function(err, docs){
 					if(err){
 						res.send("There was a problem");
 					} else{
@@ -48,12 +61,12 @@ router.post('/signup', function(req, res, next){
 router.post('/login', function(req, res, next){
 	var db = req.db;
 	var users = db.get('users');
-	users.find({"name": req.body.username}, function(err,docs){
+	users.find({"username": req.body.username}, function(err,docs){
 		if(err){
 			res.send("There was a problem");
 		} else{
 			if (docs.length > 0){
-				if(docs[0].name == req.body.username && docs[0].password == req.body.password){
+				if(docs[0].username == req.body.username && docs[0].password == req.body.password){
 					req.session.name = req.body.username;
 					res.redirect("/users/");
 				} else{

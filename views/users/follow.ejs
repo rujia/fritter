@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Follow users</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+	</head>
+
+	<body>
+		<a href="/../users/">Go back to main page</a><br><br>
+		
+		<p>Users you are following: </p>
+		<% for (var i =0; i<followedUsers.length; i++){ %>
+		<form action="follow" method="post">
+            <%= followedUsers[i] %>
+            <input type="hidden" name="name" value=<%=followedUsers[i]%>>
+            <input type="submit" name="unfollow" value="unfollow">
+        </form>
+        <%}%>
+
+		<p>Other users: </p>
+		<% for (var i=0; i<unfollowedUsers.length; i++){ %>
+		<form action="follow" method="post">
+			<%= unfollowedUsers[i] %>
+			<input type="hidden" name="name" value=<%=unfollowedUsers[i]%>>
+			<input type="submit" name="follow" value="follow">
+		</form>
+		<%}%>
+	</body>
+</html>

@@ -5,10 +5,9 @@
 		<link rel='stylesheet' href='/stylesheets/style.css' />
 	</head>
 	<body>
-    	<form action="changed" method="post">
+    	<form action="editdeleted" method="post">
     		Edit your freet:<br>
     		<textarea rows="4" cols="50" name="comments"><%= entry.post.valueOf()%></textarea><br>
-    		<input type="hidden" name="pub" value= <%=pub%>>
     		<input type="hidden" name="id" value= <%= entry._id.valueOf()%>>
     		<input type="submit" name="save" value="Save">
     		<input type="submit" name="delete" value="Delete">

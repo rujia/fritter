@@ -22,3 +22,20 @@ In order to ensure that only users with accounts can use the app, I included a f
 Also, I noticed that a user remains logged in after closing and reopening the app on the same browser. In order to ensure account security, and allow the user the choice continue to be logged in after closing the app, I added the log out function. I implemented logout by calling req.session.destroy so that the app will revert to the path it takes when no user has been specified as a field. (https://github.com/6170-fa14/rujiazha_proj2/blob/master/routes/users.js#L22)
 
 In the app, I wanted to avoid redundancies in usernames, and I wanted passwords to be secure. Therefore, in the signup page I made sure that a user could not take a username already in the database and that the password had to be 8 characters. Additionally, I checked for accidental blank submissions by not allowing the username field to be blank. (https://github.com/6170-fa14/rujiazha_proj2/blob/master/routes/index.js#L24)
+
+PROJECT 2, PART 2
+
+Grading Directions: 
+
+My additional feature allows users to favorite posts they can see and see how many favorites each post has. 
+
+Additionally, I allow a user's tweet to submit only if there is something written. This way, there will not be unintentional blank posts. 
+
+Data Model:
+
+Attached in the pdf version of this document 
+
+Design Challenges:
+
+
+

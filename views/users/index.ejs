@@ -7,7 +7,7 @@
 	<body>
     	<p>Hello <%=user%>, you're now in the user page!</p> 
     	
-        <a href= "logout/">Log out</a><br><br>
+        <a href= "logout/">Log out</a> <span>   </span><a href = "follow/">Follow</a> <br><br>
 
     	<form action="freet" method="post">
     		New freet:<br>
@@ -17,20 +17,31 @@
     	<br>
 
         <div>
-            <% for(var i = 0; i<individuals.length; i++){ %>
+            <% for (var i = 0; i<individuals.length; i++){ %>
                 <div>
-                    <% if (individuals[i].user == user) { %>
-                        <form action="editdelete" method="post">
-                            <!-- <a href= <%="edit/" + individuals[i]._id.valueOf()%>>Edit</a>
-                            <a href= <%="delete/" + individuals[i]._id.valueOf()%>>Delete</a> -->
-                            <%= individuals[i].user%>: <%= individuals[i].post %>
+                    <% if (followed.indexOf(individuals[i].username) > -1 || individuals[i].username == user) {%>
+                        <form action="change" method="post">
+                            <span><%= individuals[i].username%></span><br>
+                            <span><%= individuals[i].post %></span>
+                            <% if (individuals[i].username == user) { %>
+                                <input type="submit" name="editdelete" value="edit/delete">
+                            <%}%>
+                            
                             <input type="hidden" name="id" value=<%=individuals[i]._id.valueOf()%>>
-                            <input type="submit" value="edit/delete">
+                            <input type="submit" name="favorite" value=
+                            <% if (individuals[i].favorite.indexOf(user) > -1){ %>
+                                "unfavorite"
+                            <%} else {%>
+                                "favorite"
+                            <%}%>
+                            ><br>
+
+                            <span>Favorite: <%=individuals[i].favorite.length%><% if (individuals[i].favorite.length>0){ %>, by <%=individuals[i].favorite.join(", ")%><%}%>
+                            </span>
+
                         </form>
-                    <%} else {%>
-                    <%= individuals[i].user%>: <%= individuals[i].post %>
                     <%}%>
-                </div>
+                </div><br>
             <%}%>
         </div>
   	</body>
