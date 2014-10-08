@@ -4,6 +4,31 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
 	req.session.destroy();
+	
+	var db = req.db; 
+	var posts = db.get('posts');
+	posts.find({}, function(e, docs){
+		console.log(docs);
+		for (var i = 0; i<docs.length; i++){
+			posts.remove({_id: docs[i]._id});
+		}
+	});
+	posts.find({}, function(e, docs){
+		console.log(docs);
+	}) 
+
+	var db = req.db; 
+	var users = db.get('users');
+	users.find({}, function(e, docs){
+		console.log(docs);
+		for (var i = 0; i<docs.length; i++){
+			users.remove({_id: docs[i]._id});
+		}
+	});
+	users.find({}, function(e, docs){
+		console.log(docs);
+	}) 
+
 	res.render('index/index', {'message': ''});
 });
 
