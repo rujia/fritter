@@ -27,9 +27,13 @@ PROJECT 2, PART 2
 
 Grading Directions: 
 
-My additional feature allows users to favorite posts they can see and see how many favorites each post has. 
+My additional feature allows users to favorite posts they can see and see how many favorites each post has. A user can both view posts of users they follow and favorite or unfavorite each post, including their own. Each post also displays the number of favorites it has, followed by the name of the users that favorited it. 
 
-Additionally, I allow a user's tweet to submit only if there is something written. This way, there will not be unintentional blank posts. 
+I allow a user's tweet to submit only if there is something written. This way, there will not be unintentional blank posts. https://github.com/6170-fa14/rujiazha_proj2/blob/master/routes/users.js#L78
+
+I modified the checklogin function to return true or false. By doing so, I can put in an if-else statement in each method to make sure that code to be executed when a user is logged in is only run if a user is logged in. The precaution taken here is necessary because the code after res.redirect() can be run before redirect is executed. https://github.com/6170-fa14/rujiazha_proj2/blob/master/routes/users.js#L8
+
+In my follow users page, I categorized users into the users that are followed from the users that are not followed, so it is easier for the user to see which users to follow/unfollow. Upon following a user, the page immediately updates and places the user in the appropriate category. https://github.com/6170-fa14/rujiazha_proj2/blob/master/routes/users.js#L56
 
 Data Model:
 
@@ -37,5 +41,7 @@ Attached in the pdf version of this document
 
 Design Challenges:
 
+One challenge was on form submissions for following or unfollowing users. I could have the action for each form point to a different handler in users.js, or I could have the actions of both forms have the same name. Initially I had two different actions point to different handlers, but because both follow and unfollowing a user involve changing the same field in the users collection, the handlers were very similar and had repetitive code. To avoid this issue of repetitiveness, I used the same action. For each form, I added the name tag to the submit button of either "follow" or "unfollow". This way, I can use the same handler for both follow and unfollow, and I can check which kind of submit button was pressed for where the code differs.
+https://github.com/6170-fa14/rujiazha_proj2/blob/master/routes/users.js#L63
 
-
+Another challenge was determining the structure for storing the favorited information. I could either store the favorites of each user under the users collection or under the posts collection. To store under the users collection would mean that the whole users collection would be searched for each post to figure out which users favorited each post. Storing under the posts collection would make it much easier to access the users that favorited that post. Therefore, I chose to store the users that favorited a post under the posts collection. https://github.com/6170-fa14/rujiazha_proj2/blob/master/routes/users.js#L21 

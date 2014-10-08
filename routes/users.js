@@ -99,7 +99,7 @@ router.post('/editdeleted', function(req, res, next){
 	res.redirect('/users/');
 });
 
-/* Called when a user wants to edit/delete a freet. */
+/* Called when a user wants to edit/delete/favorite a freet. */
 router.post('/change', function(req, res, next){
 	if (checklogin(req, res)) return;
 	var db = req.db;
