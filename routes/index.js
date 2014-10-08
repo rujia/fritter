@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res) {
 	req.session.destroy();
-	
+	/*
 	var db = req.db; 
 	var posts = db.get('posts');
 	posts.find({}, function(e, docs){
@@ -28,7 +28,7 @@ router.get('/', function(req, res) {
 	users.find({}, function(e, docs){
 		console.log(docs);
 	}) 
-
+	*/
 	res.render('index/index', {'message': ''});
 });
 
